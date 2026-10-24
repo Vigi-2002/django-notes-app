@@ -30,7 +30,13 @@ The MySQL data folder (a bind mount inside the project) was part of the
 build context, and Docker can't package a socket file. The context was
 170 MB. Fix: added a `.dockerignore`.
 
-![Error](docs/build-error.png)
+**Before** (no `.dockerignore`, 170 MB context, build fails):
+
+![Build error](docs/build-error.png)
+
+**After** (with `.dockerignore`, build succeeds):
+
+![Build fixed](docs/build-fixed.png)
 
 **2. `pull access denied for django_app`**
 Compose tried to pull a locally built image name from Docker Hub.
